@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.naturaljs.app.sample.mappers.SampleMapper">
+
+	<resultMap id="sampleMap" type="java.util.Map">
+		<result column="KEY" property="key" />
+		<result column="INDEX" property="index" />
+		<result column="GUID" property="guid" />
+		<result column="ISACTIVE" property="isActive" />
+		<result column="BALANCE" property="balance" />
+		<result column="PICTURE" property="picture" />
+		<result column="AGE" property="age" />
+		<result column="EYECOLOR" property="eyeColor" />
+		<result column="NAME" property="name" />
+		<result column="GENDER" property="gender" />
+		<result column="COMPANY" property="company" />
+		<result column="EMAIL" property="email" />
+		<result column="PHONE" property="phone" />
+		<result column="ADDRESS" property="address" />
+		<result column="ABOUT" property="about" />
+		<result column="REGISTERED" property="registered" />
+		<result column="LATITUDE" property="latitude" />
+		<result column="LONGITUDE" property="longitude" />
+		<result column="GREETING" property="greeting" />
+		<result column="FAVORITEFRUIT" property="favoriteFruit" />
+	</resultMap>
+	
+	<select id="getSampleList" parameterType="java.util.Map" resultMap="sampleMap">
+		-- com.naturaljs.app.sample.mappers.SampleMapper.getSampleList
+		SELECT *
+		  FROM SAMPLE 
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name != ''">
+		   AND name like '%' || #{name} || '%'
+			</if>
+			<if test="gender != null and gender != ''">
+		   AND gender = #{gender}
+			</if>
+			<if test="eyeColor != null and eyeColor != ''">
+		   AND eyeColor = #{eyeColor}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getSample" parameterType="int" resultMap="sampleMap">
+		-- com.naturaljs.app.sample.mappers.SampleMapper.getSample
+		SELECT *
+		  FROM SAMPLE 
+		 WHERE KEY = #{key}
+	</select>
+
+	<insert id="insertSample" parameterType="java.util.Map">
+		-- com.naturaljs.app.sample.mappers.SampleMapper.insertSample
+		INSERT INTO SAMPLE ( 
+			index,
+			guid,
+			isActive,
+			balance,
+			picture,
+			age,
+			eyeColor,
+			name,
+			gender,
+			company,
+			email,
+			phone,
+			address,
+			about,
+			registered,
+			latitude,
+			longitude,
+			greeting,
+			favoriteFruit
+		) VALUES (
+			RAND() * 1000,
+			#{guid},
+			#{isActive},
+			#{balance},
+			#{picture},
+			#{age},
+			#{eyeColor},
+			#{name},
+			#{gender},
+			#{company},
+			#{email},
+			#{phone},
+			#{address},
+			#{about},
+			CURRENT_DATE,
+			#{latitude},
+			#{longitude},
+			#{greeting},
+			#{favoriteFruit}
+		)
+	</insert>
+	
+	<update id="updateSample" parameterType="java.util.Map">
+		-- com.naturaljs.app.sample.mappers.SampleMapper.updateSample
+		UPDATE SAMPLE 
+			<trim prefix="SET" suffixOverrides=",">
+				<if test="index != null and index != ''">
+			   index = #{index},
+				</if>
+				<if test="guid != null and guid != ''">
+			   guid = #{guid},
+				</if>
+				<if test="isActive != null and isActive != ''">
+			   isActive = #{isActive},
+				</if>
+				<if test="balance != null and balance != ''">
+			   balance = #{balance},
+				</if>
+				<if test="picture != null and picture != ''">
+			   picture = #{picture},
+				</if>
+				<if test="age != null and age != ''">
+			   age = #{age},
+				</if>
+				<if test="eyeColor != null and eyeColor != ''">
+			   eyeColor = #{eyeColor},
+				</if>
+				<if test="name != null and name != ''">
+			   name = #{name},
+				</if>
+				<if test="gender != null and gender != ''">
+			   gender = #{gender},
+				</if>
+				<if test="company != null and company != ''">
+			   company = #{company},
+				</if>
+				<if test="email != null and email != ''">
+			   email = #{email},
+				</if>
+				<if test="phone != null and phone != ''">
+			   phone = #{phone},
+				</if>
+				<if test="address != null and address != ''">
+			   address = #{address},
+				</if>
+				<if test="about != null and about != ''">
+			   about = #{about},
+				</if>
+				<if test="latitude != null and latitude != ''">
+			   latitude = #{latitude},
+				</if>
+				<if test="longitude != null and longitude != ''">
+			   longitude = #{longitude},
+				</if>
+				<if test="greeting != null and greeting != ''">
+			   greeting = #{greeting},
+				</if>
+				<if test="favoriteFruit != null and favoriteFruit != ''">
+			   favoriteFruit = #{favoriteFruit}
+				</if>
+			</trim>
+		 WHERE key = #{key}
+	</update>
+	
+	<delete id="deleteSample" parameterType="int">
+		-- com.naturaljs.app.sample.mappers.SampleMapper.deleteSample
+		DELETE FROM SAMPLE 
+		 WHERE key = #{key}
+	</delete>
+	
+</mapper>
