@@ -1,3 +1,4 @@
+-- SAMPLE TABLE
 INSERT INTO SAMPLE(index,guid,isActive,balance,picture,age,eyeColor,name,gender,company,email,phone,address,about,registered,latitude,longitude,greeting,favoriteFruit) VALUES (RAND() * 1000,'1a9e5450-c664-4bfd-8174-d03005eca08d','Y',1284.38,'http://placehold.it/32x32',26,'green','Dean Stanley','male','ZENTIA','deanstanley@zentia.com','+1 (920) 409-2680','936 Meserole Street, Vicksburg, Massachusetts, 1198','Mollit elit qui reprehenderit fugiat excepteur adipisicing sunt id proident laborum sint proident.
 Amet cupidatat ipsum do irure qui magna sunt pariatur commodo eiusmod ipsum qui ad culpa.
 Nisi tempor cupidatat do tempor reprehenderit irure consectetur cupidatat deserunt fugiat.
@@ -335,3 +336,23 @@ INSERT INTO SAMPLE(index,guid,isActive,balance,picture,age,eyeColor,name,gender,
 ',CURRENT_DATE,-87.563535,25.644254,'Hello, Wilder Freeman! You have 1 unread messages.','strawberry');
 INSERT INTO SAMPLE(index,guid,isActive,balance,picture,age,eyeColor,name,gender,company,email,phone,address,about,registered,latitude,longitude,greeting,favoriteFruit) VALUES (RAND() * 1000,'36f54c25-33d3-4f8c-830c-b425b2b97ece','Y',2747.08,'http://placehold.it/32x32',32,'blue','Donovan Mercado','male','XTH','donovanmercado@xth.com','+1 (909) 476-2428','960 Rapelye Street, Marne, Minnesota, 3803','Exercitation labore cillum veniam id amet. Proident deserunt laborum exercitation ex sit. Cupidatat esse esse mollit aliqua. Dolore dolore culpa fugiat ad velit consectetur sit deserunt et adipisicing ipsum veniam cillum exercitation. Irure ipsum Lorem id reprehenderit fugiat nostrud dolore qui. Lorem officia eu et consequat.
 ',CURRENT_DATE,-20.5024,-118.271754,'Hello, Donovan Mercado! You have 3 unread messages.','strawberry');
+
+-- SAMPLE_CODE TABLE
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('gender', 'male', 'male');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('gender', 'female', 'female');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('eyeColor', 'blue', 'blue');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('eyeColor', 'brown', 'brown');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('eyeColor', 'green', 'green');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'PROSELY', 'PROSELY');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'ASSISTIX', 'ASSISTIX');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'VORATAK', 'VORATAK');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'CANDECOR', 'CANDECOR');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'BARKARAMA', 'BARKARAMA');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'STOCKPOST', 'STOCKPOST');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'MICROLUXE', 'MICROLUXE');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'SHADEASE', 'SHADEASE');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'ZENTIA', 'ZENTIA');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('company', 'INTRADISK', 'INTRADISK');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('favoriteFruit', 'apple', 'apple');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('favoriteFruit', 'strawberry', 'strawberry');
+INSERT INTO SAMPLE_CODE (code, key, val) VALUES ('favoriteFruit', 'banana', 'banana');

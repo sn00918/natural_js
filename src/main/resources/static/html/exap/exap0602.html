@@ -86,7 +86,7 @@ N(".exap0602").cont({
     },
     setCodes : function(cont, codeParams, afterCodeInitFn) {
     	// 1. initialize N.select and bind the code data.
-    	N({ codes : codeParams }).comm("data/code").submit(function(data, request) {
+    	N({ codes : codeParams }).comm("rest/sample/code").submit(function(data, request) {
     		N(codeParams).each(function(i, code) {
     			N(data).datafilter("code === '" + code + "'").select(N("#detail #" + code, cont.view)).bind();
     		});
@@ -127,7 +127,7 @@ N(".exap0602").cont({
             		onOk : function() {
             			N(cont.form.data(true)).comm({
             				type : cont.request.attr("selData") !== undefined ? "PATCH" : "POST",
-            				url : "data/sample" + (cont.request.attr("selData") !== undefined ? "/" + cont.form.val("key") : "")
+            				url : "rest/sample" + (cont.request.attr("selData") !== undefined ? "/" + cont.form.val("key") : "")
             			}).submit(function(data) {
             				var msg;
             				if(data > 0) {

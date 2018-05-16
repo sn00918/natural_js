@@ -71,7 +71,7 @@ N(".exap0100").cont({
     },
     setCodes : function(cont, codeParams, afterCodeInitFn) {
     	// 1. initialize N.select and bind the code data.
-    	N({ codes : codeParams }).comm("data/code").submit(function(data, request) {
+    	N({ codes : codeParams }).comm("rest/sample/code").submit(function(data, request) {
     		N(codeParams).each(function(i, code) {
     			N(data).datafilter("code === '" + code + "'").select(N(".searchBox #" + code, cont.view)).bind();
     		});
@@ -105,7 +105,7 @@ N(".exap0100").cont({
     	N("#btnSearch", cont.view).click(function(e) {
             e.preventDefault();
             if(cont.form.validate()) {
-    			N(cont.form.data(true)).comm("data/sample").submit(function(data, request) {
+    			N(cont.form.data(true)).comm("rest/sample").submit(function(data, request) {
     				cont.grid.bind(data);
              	});
             }
