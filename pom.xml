@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.naturaljs</groupId>
-	<artifactId>natural_js_spring</artifactId>
+	<artifactId>natural-js-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>natural_js_spring</name>
-	<description>Spring Boot and Natural-JS</description>
+	<name>Natural-JS and Spring Boot</name>
+	<description>Natural-JS and Spring Boot Sample Project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
