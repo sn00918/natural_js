@@ -18,10 +18,8 @@ html {
 body {
 	margin: 0;
 	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "dotum", "Segoe UI", sans-serif;
-	color : rgba(0, 0, 0, 0.87);;
+	color : rgba(0, 0, 0, 0.87);
 	min-width: 578px;
-	background-image: url("../images/body_back_new.jpg");
-	background-color: #009688;
 	overflow-y: scroll;
 }
 
@@ -79,9 +77,11 @@ table:last-child {
 }
 table th, table td {
 	border: 1px solid #80CBC4;
-	padding: 5px 3px;
+	padding: 3px 5px;
 	word-break: break-word;
 	font-size: 12px;
+	height: 35px;
+    box-sizing: border-box;
 }
 table th, table > tfoot td {
 	background-color: #B2DFDB;
@@ -98,19 +98,17 @@ body > #docsContainer__ {
 	max-width: 1003px;
 	min-width: 560px;
 	min-height: 350px;
-	background-color: #fff;
 	padding: 0;
 	font-size: 0.875em;
-	box-shadow: 0 0 10px #00695C;
-	opacity: 0.97;
+	box-shadow: 0 0 50px #B2DFDB;
 }
 
 body > #docsContainer__.multi__ {
-	padding-top: 4px;
+	margin-top: 4px;
 }
 
 body > #docsContainer__ article {
-	margin: 0 15px 0 15px;
+	margin: 15px;
 	word-break: break-word;
 	line-height: 180%;
 }
@@ -331,7 +329,6 @@ article .smallContTit {
 
 article .searchBox {
 	border: 1px solid #80CBC4;
-	box-shadow: inset 1px 1px 3px #B2DFDB;
 	background-color: #E0F2F1;
 	border-radius: 3px;
 	margin-bottom: 15px;
@@ -374,6 +371,10 @@ article .searchBox label input, article .searchBox label select {
 
 article .searchBox label input[type='text'], article .searchBox label input[type='number'], article .searchBox label input[type='tel'] {
 	width: 85px;
+}
+
+article .form input[type='text'], article .form input[type='number'], article .form input[type='tel'] {
+	width: 100%;
 }
 
 article .click {

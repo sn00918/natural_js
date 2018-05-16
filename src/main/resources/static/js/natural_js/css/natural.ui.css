@@ -11,13 +11,13 @@
 .alert__.block_overlay_msg__ {
 	background: #fff;
 	border: 2px solid #26A69A;
-	box-shadow: 4px 4px 8px rgba(0, 0, 0, .20);
+	box-shadow: 4px 4px 8px #00897B;
 	border-radius: 5px;
 }
 
 .alert__.block_overlay_msg__ .msg_title_box__ {
 	background-color: #26A69A;
-	box-shadow: 0px 3px 3px rgba(0, 0, 0, .14);
+	box-shadow: 0px 3px 3px #00897B;
 	margin: -2px -4px -2px -4px;
 	border-top: none;
 	border-radius: 4px;
@@ -102,8 +102,8 @@
 	padding: 5px;
 	border-radius: 0 10px 0 10px;
 	border: 1px solid #E0F2F1;
-	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-	text-shadow: 1px 1px 1px rgba(212, 224, 212, 0.57);
+	box-shadow: 1px 1px 5px #00897B;
+	text-shadow: 1px 1px 1px #00897B;
 	margin-right: 5px;
 }
 
@@ -427,7 +427,7 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 }
 
 .grid__ > tbody.row_data_changed__ {
-	background-color: #B2DFDB;
+	background-color: #E0F2F1CC;
 }
 
 .grid__ > tbody.row_data_changed__>tr:first-child>td:first-child {
@@ -471,6 +471,7 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
+	box-sizing: border-box;
 }
 
 .grid__>thead>tr>th .resize_bar__ {
@@ -522,7 +523,7 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 	max-width: 300px;
 	position: absolute;
 	background-color: #E0F2F1;
-	box-shadow: 0px 4px 12px #999;
+	box-shadow: 0px 4px 12px #00897B;
 	border-radius: 5px 0 5px 5px;
 	padding: 4px;
 	margin: 0;
@@ -682,7 +683,7 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 .grid__ .grid_more_thead_col__ .grid_more_panel__ {
 	border: 1px solid #80CBC4;
 	background-color: #E0F2F1;
-	box-shadow: 0px 4px 12px #999;
+	box-shadow: 0px 4px 12px #00897B;
 	border-radius: 5px 0 5px 5px;
 	padding: 5px;
 	text-align: left;
@@ -854,14 +855,35 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 /* DatePicker */
 .datepicker_contents__ {
 	border: 1px solid #009688;
-	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 3px 12px #00897B;
 	border-radius: 3px;
-	background-color: #26A69A;
+	background-color: #FFFFFF;
 	padding: 3px;
 	font-size: 12px;
-	width: 316px;
-	color : rgba(0, 0, 0, 0.87);;
 	z-index: 1;
+	width: 316px;
+}
+
+.datepicker_contents__ > .datepicker_years_panel__ {
+	width: 40px;
+	float: left;
+	border-radius: 3px;
+	background-color: #E0F2F1;
+}
+
+.datepicker_contents__ > .datepicker_months_panel__ {
+	width: 60px;
+	float: left;
+	margin-left: 3px;
+	border-radius: 3px;
+	background-color: #E0F2F1;
+}
+
+.datepicker_contents__ > .datepicker_days_panel__ {
+	width: 210px;
+	float: left;
+	margin-left: 3px;
+	border-radius: 3px;
 }
 
 .datepicker_contents__.visible__ {
@@ -887,65 +909,73 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 }
 
 .datepicker_contents__ .datepicker_year_item__, .datepicker_contents__ .datepicker_year_paging__ {
-	border: 1px solid #E0F2F1;
+	border: 1px solid transparent;
 	cursor: pointer;
-	background-color: #80CBC4;
 }
 
 .datepicker_contents__ .datepicker_year_paging__ > a {
 	text-decoration: none;
-	color : rgba(0, 0, 0, 0.87);;
+	color: #009688;
 }
 
 .datepicker_contents__ .datepicker_curr_year__ {
-	border-color: #B2DFDB;
+	color: #00BFA5;
 	background-color: #deeeee;
 }
 
 .datepicker_contents__ .datepicker_year_selected__ {
-	background-color: #26A69A;
+	background-color: #80CBC4;
 	color: #ffffff;
+	border-radius: 50%;
+	    transform: scale(0.9);
+    font-size: 13px;
 }
 
 .datepicker_contents__ .datepicker_month_item__ {
-	border: 1px solid #E0F2F1;
+	border: 1px solid transparent;
 	cursor: pointer;
-	background-color: #80CBC4;
 }
 
 .datepicker_contents__ .datepicker_year_title__, .datepicker_contents__ .datepicker_month_title__, .datepicker_contents__ .datepicker_day__ {
-	border: 1px solid #F7F6F6;
-	background-color: #26A69A;
-	color: #ffffff;
+	border: 1px solid #4DB6AC;
+	background-color: #4DB6AC;
+	color: #fff;
 	font-weight: bold;
 }
 
 .datepicker_contents__ .datepicker_prev_day_item__, .datepicker_contents__ .datepicker_next_day_item__ {
-	border: 1px solid #F7F6F6;
+	border: 1px solid #fff;
 	cursor: pointer;
-	background-color: #B2DFDB;
-	color : rgba(0, 0, 0, 0.87);;
+	color: #00000088;
 }
 
 .datepicker_contents__ .datepicker_day_item__ {
-	border: 1px solid #E0F2F1;
+	border: 1px solid transparent;
 	cursor: pointer;
 	background-color: #ffffff;
 }
 
 .datepicker_contents__ .datepicker_month_selected__ {
-	background-color: #26A69A;
+	background-color: #80CBC4;
 	color: #ffffff;
+	border-radius: 50%;    transform: scale(0.9);
+    font-size: 13px;
 }
 
 .datepicker_contents__ .datepicker_day_selected__ {
-	background-color: #26A69A;
+	background-color: #80CBC4;
 	color: #ffffff;
+	border-radius: 50%;
+	    transform: scale(0.9);
+    font-size: 13px;
 }
 
 .datepicker_contents__ .datepicker_year_item__:hover, .datepicker_contents__ .datepicker_month_item__:hover, .datepicker_contents__ .datepicker_day_item__:hover {
-	background-color: #4DB6AC;
-	color: #ffffff;
+	background-color: #B2DFDB;
+	border-radius: 50%;
+	transition: background-color 0.3s ease-out;
+    transform: scale(0.9);
+    font-size: 13px;
 }
 
 /* Tree */
@@ -1142,7 +1172,7 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 	margin-bottom: 5px;
 	border-radius: 5px;
 	border: 1px solid #B2DFDB;
-	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.23);
+	box-shadow: 1px 1px 4px #00897B;
 	transform: scale(0);
 	opacity: 0;
 	background-color: #E0F2F1;
@@ -1323,7 +1353,7 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 	border: 1px solid #80CBC4;
 	max-width: 300px;
 	background-color: #E0F2F1;
-	box-shadow: 0px 4px 12px #999;
+	box-shadow: 0px 4px 12px #00897B;
 	border-radius: 5px 0 5px 5px;
 	padding: 4px;
 	margin: 2px 0 0 0;
@@ -1378,6 +1408,7 @@ a.btn_mouseout__, input[type='button'].btn_mouseout__, button.btn_mouseout__ {
 
 .docs__>.docs_contents__ {
 	margin: 15px 0;
+	background-color: #fff;
 }
 
 .docs__>.docs_contents__.hidden__  {

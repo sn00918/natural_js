@@ -2,7 +2,7 @@
 	<p lang="ko_KR" class="smallContTit">데이터 : </p>
 	<p lang="en_US" class="smallContTit">Data : </p>
 	<div class="dataBox">
-		/rest/sample
+		/natural_js/html/apid/data/grid.json
 	</div>
 	<p lang="ko_KR" class="smallContTit">기본 옵션 : </p>
 	<p lang="en_US" class="smallContTit">Default options : </p>
@@ -582,7 +582,7 @@
 
 	    	N("#btnBind", view).click(function(e) {
 	            e.preventDefault();
-	            N.comm("rest/sample").submit(function(data) {
+	            N.comm("html/apid/data/grid.json").submit(function(data) {
 	            	if(N("#fixedcol", view).val() > 0) {
 	            		data = data.splice(0, 20);
 		    		}

@@ -7,7 +7,7 @@
 	<groupId>com.naturaljs</groupId>
 	<artifactId>natural-js-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Natural-JS and Spring Boot</name>
 	<description>Natural-JS and Spring Boot Sample Project</description>

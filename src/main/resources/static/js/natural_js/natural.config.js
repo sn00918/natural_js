@@ -195,8 +195,9 @@
 			    	}
 
 			    	var navHeight = N(".header nav").outerHeight();
+			    	var marginTop = 179 + $("header").height();
 					N(window).unbind("scroll.aop").bind("scroll.aop", function(e) {
-						if(N(this).scrollTop() > 303 - navHeight) {
+						if(N(this).scrollTop() > marginTop - navHeight) {
 							contents.css({
 								"position" : "fixed",
 								"top" : navHeight
@@ -204,10 +205,10 @@
 						} else {
 							contents.css({
 								"position" : "absolute",
-								"top" : 303
+								"top" : marginTop
 							});
 						}
-					});
+					}).trigger("scroll.aop");
 				}
 			}]
 		},
@@ -223,7 +224,7 @@
 			* 여기에서 지정한 pageFilter, dataFilter 는 상수값이 아니므로 자유롭게 지정하면 됨.
 			*/
 			"filters" : {
-				"commonFilter" : {
+				"basicFilter" : {
 					/**
 					 * N.comm 이 초기화 되기 전 실행됨(N.cont 의 init 아님). string 으로 변환되지 않은 원형의 파라미터를 꺼내올 수 있음.
 					 */
@@ -252,7 +253,7 @@
 					 */
 					success : function(request, data, textStatus, xhr) {
 						// return data 를 하면 N.comm.submit 의 콜백의 인자로 넘어오는 data 가 리턴한 데이터로 치환 됨.
-						
+
 						/* 디버깅 지원을 위한 컨트롤러의 sourceURL 자동 삽입 처리 */
 						var opts = request.options;
 						if((opts.target && N.isElement(opts.target)) || opts.dataType === "html" || opts.contentType === "text/css") {
@@ -263,16 +264,16 @@
 							if(cutIndex < 0) {
 								cutIndex = data.lastIndexOf(" </script>");
 							}
-							
+
 							// color theme
 							$(IndexController.colorPalette.teal).each(function(i, color) {
-								data = data.replace(new RegExp(color, "gi"), IndexController.colorPalette[window.localStorage.colorTheme][i]);
+								data = data.replace(new RegExp(color, "gi"), IndexController.colorPalette[window.localStorage.themeColor][i]);
 
 								if(opts.contentType === "text/css") {
 									data = data.replace(/url\(/gi, "*url(");
 								}
-							});								
-							
+							});
+
 							return data = [data.slice(0, cutIndex), '\n//# sourceURL=' + opts.url + "\n", data.slice(cutIndex)].join("");
 						}
 					},
@@ -286,11 +287,6 @@
 							} else {
 								N(window).alert('[ ' + request.options.url + ' ] 페이지를 불러오는 도중 에러가 발생 했습니다.').show();
 							}
-						} else if(request.options.dataType === "json"){
-							N(window).alert({
-								title : "[" + xhr.responseJSON.status + "]" + xhr.responseJSON.error + "(" + xhr.responseJSON.path + ")",
-								msg : xhr.responseJSON.message
-							}).show();
 						}
 					},
 					/**
@@ -594,9 +590,11 @@
     				if(location.hostname === "bbalganjjm.github.io") {
     					try {
     						ga('create', 'UA-58001949-2', 'auto');
+    						ga('set', 'location', location.href);
+    						ga('set', 'title', tabEle.find("a").text());
     						ga('send', {
     							'hitType': 'pageview',
-    							'page': "#" + hash
+    							'page': hash
     						});
     					} catch (e) {}
     				}
@@ -841,6 +839,8 @@
 				if(location.hostname === "bbalganjjm.github.io") {
 					try {
 						ga('create', 'UA-58001949-2', 'auto');
+						ga('set', 'location', location.href);
+						ga('set', 'title', this.doc(docId).docNm);
 						ga('send', {
 							'hitType': 'pageview',
 							'page': "#" + hash
@@ -874,7 +874,7 @@
 					"close" : "메뉴 닫기",
 					"closeConf" : "\"{0}\" 메뉴에 편집중인 항목이 있습니다. 무시하고 메뉴를 닫겠습니까?",
 					"maxTabs" : "최대 {0} 개의 메뉴 만 열 수 있습니다. <br>다른 메뉴 탭을 닫고 다시 시도 하세요.",
-					"maxStateful" : "선택한 메뉴가 활성화 되면 설정 된 최대 상태유지 메뉴 개수({1} 개)가 초과되어<br>마지막으로 선택 된 \"{0}\" 메뉴의 상태가 초기화 됩니다.<br>메뉴를 선택 하겠습니까?"
+					"maxStateful" : "선택한 메뉴가 활성화 되면 설정 된 최대 상태유지 메뉴 개수(최대 {1} 개)가 초과 되어 마지막으로 선택 된 \"{0}\" 메뉴 페이지가 다시 로딩 됩니다.<br>메뉴를 선택 하겠습니까?"
 				},
 				"en_US" : {
 					"closeAllTitle" : "Close all menus",
@@ -887,10 +887,10 @@
 					"close" : "Close the menu",
 					"closeConf" : "There is an item being edited in the \"{0}\" memu. Are you sure you want to close the menu?",
 					"maxTabs" : "You can only open up to {0} menus. <br>Close other menu tabs and try again.",
-					"maxStateful" : "선택한 메뉴가 활성화 되면 설정 된 최대 상태유지 메뉴 개수({1} 개)가 초과되어<br>마지막으로 선택 된 \"{0}\" 메뉴의 상태가 초기화 됩니다.<br>메뉴를 선택 하겠습니까?"
+					"maxStateful" : "When the selected menu is activated, the maximum number of menu items (maximum of {1}) is exceeded and the last selected menu page \"{0}\" will be  reloaded.<br>Do you want to select the menu?"
 				}
 			}
 		}
 	});
-	
+
 })(N);
