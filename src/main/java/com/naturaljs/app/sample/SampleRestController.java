@@ -30,7 +30,7 @@ public class SampleRestController {
 	}
 
 	@RequestMapping(value = "{key}", method = RequestMethod.GET)
-	public Map<String, Object> getSample(@PathVariable int key) {
+	public List<Map<String, Object>> getSample(@PathVariable int key) {
 		return sampleService.getSample(key);
 	}
 

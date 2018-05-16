@@ -10,12 +10,12 @@ public interface SampleMapper {
 
 	public List<Map<String, Object>> getSampleList(Map<String, Object> vo);
 
-	public Map<String, Object> getSample(int key);
-	
+	public List<Map<String, Object>> getSample(int key);
+
 	public int insertSample(Map<String, Object> vo);
-	
+
 	public int updateSample(Map<String, Object> vo);
-	
+
 	public int deleteSample(int key);
-	
+
 }

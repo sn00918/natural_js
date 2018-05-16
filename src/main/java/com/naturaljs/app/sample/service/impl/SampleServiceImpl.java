@@ -18,7 +18,7 @@ public class SampleServiceImpl {
 		return sampleMapper.getSampleList(vo);
 	}
 
-	public Map<String, Object> getSample(int key) {
+	public List<Map<String, Object>> getSample(int key) {
 		return sampleMapper.getSample(key);
 	}
 
