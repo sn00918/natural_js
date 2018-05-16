@@ -2,12 +2,12 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
+#.classpath
+#.project
 .springBeans
+.settings
+.factorypath
+.apt_generated
 .sts4-cache
 
 ### IntelliJ IDEA ###
