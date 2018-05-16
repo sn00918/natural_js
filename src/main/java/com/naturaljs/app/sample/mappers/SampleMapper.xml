@@ -28,7 +28,26 @@
 	
 	<select id="getSampleList" parameterType="java.util.Map" resultMap="sampleMap">
 		-- com.naturaljs.app.sample.mappers.SampleMapper.getSampleList
-		SELECT *
+		SELECT KEY,
+			   INDEX,
+			   GUID,
+			   ISACTIVE,
+			   BALANCE,
+			   PICTURE,
+			   AGE,
+			   EYECOLOR,
+			   NAME,
+			   GENDER,
+			   COMPANY,
+			   EMAIL,
+			   PHONE,
+			   ADDRESS,
+			   ABOUT,
+			   TO_CHAR(REGISTERED, 'YYYYMMDD') REGISTERED,
+			   LATITUDE,
+			   LONGITUDE,
+			   GREETING,
+			   FAVORITEFRUIT
 		  FROM SAMPLE 
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 			<if test="name != null and name != ''">
@@ -41,11 +60,31 @@
 		   AND eyeColor = #{eyeColor}
 			</if>
 		</trim>
+	  ORDER BY REGISTERED DESC
 	</select>
 	
 	<select id="getSample" parameterType="int" resultMap="sampleMap">
 		-- com.naturaljs.app.sample.mappers.SampleMapper.getSample
-		SELECT *
+		SELECT KEY,
+			   INDEX,
+			   GUID,
+			   ISACTIVE,
+			   BALANCE,
+			   PICTURE,
+			   AGE,
+			   EYECOLOR,
+			   NAME,
+			   GENDER,
+			   COMPANY,
+			   EMAIL,
+			   PHONE,
+			   ADDRESS,
+			   ABOUT,
+			   TO_CHAR(REGISTERED, 'YYYYMMDD') REGISTERED,
+			   LATITUDE,
+			   LONGITUDE,
+			   GREETING,
+			   FAVORITEFRUIT
 		  FROM SAMPLE 
 		 WHERE KEY = #{key}
 	</select>

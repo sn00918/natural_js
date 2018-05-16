@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.naturaljs.app.sample.mappers.SampleCodeMapper">
+
+	<resultMap id="sampleCodeMap" type="java.util.Map">
+		<result column="CODE" property="code" />
+		<result column="KEY" property="key" />
+		<result column="VAL" property="val" />
+	</resultMap>
+	
+	<select id="getSampleCodeList" parameterType="java.util.Map" resultMap="sampleCodeMap">
+		-- com.naturaljs.app.sample.mappers.SampleMapper.getSampleList
+		SELECT *
+		  FROM SAMPLE_CODE 
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="codes != null">
+		   AND code IN
+				<foreach item="code" index="index" collection="codes" open="(" separator="," close=")">
+					#{code}
+				</foreach>
+			</if>
+		</trim>
+	</select>
+	
+</mapper>

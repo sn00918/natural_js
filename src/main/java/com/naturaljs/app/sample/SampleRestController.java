@@ -63,7 +63,7 @@ public class SampleRestController {
 			if ("insert".equals((String) vo.get("rowStatus"))) {
 				insert += sampleService.insertSample(vo);
 			} else if ("update".equals((String) vo.get("rowStatus"))) {
-				update += sampleService.updateSample(vo);																	
+				update += sampleService.updateSample(vo);
 			} else if ("delete".equals((String) vo.get("rowStatus"))) {
 				delete += sampleService.deleteSample((Integer) vo.get("key"));
 			}
@@ -73,7 +73,7 @@ public class SampleRestController {
 		resultMap.put("insert", insert);
 		resultMap.put("update", update);
 		resultMap.put("delete", delete);
-		
+
 		return resultMap;
 	}
 
