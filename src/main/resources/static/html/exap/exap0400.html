@@ -107,22 +107,22 @@ N(".exap0400").cont({
     		N(codeParams).each(function(i, code) {
     			N(data).datafilter("code === '" + code + "'").select(N("#detail #" + code, cont.view)).bind();
     		});
-    		
+
     		afterCodeInitFn.call(cont);
      	});
     },
     setComponents : function(cont) {
     	// 2. initialize buttons
     	N(".buttons a", cont.view).button();
-    	
+
     	// 3. initialize N.form
     	cont.form = N([]).form({
     		context : N("#detail", cont.view),
     		revert : true
     	});
-    	
+
     	// 3-1. N.form data bind
-    	N.comm("data/" + cont._key + ".json").submit(function(data) {
+    	N.comm("rest/sample/" + cont._key).submit(function(data) {
        		// Data bind by N.form
        		cont.form.bind(0, data);
        	});
@@ -143,7 +143,7 @@ N(".exap0400").cont({
             		onOk : function() {
             			N(cont.form.data(true)).comm({
             				type : "PATCH",
-            				url : "data/" + cont._key + ".json"
+            				url : "rest/sample/" + cont._key
             			}).submit(function(data) {
             				var msg;
             				if(data > 0) {
@@ -157,7 +157,7 @@ N(".exap0400").cont({
             	}).show();
             }
         });
-    	
+
     	// 4-2 Revert to initialized data
     	N("#btnRevert", cont.view).click(function(e) {
     		e.preventDefault();

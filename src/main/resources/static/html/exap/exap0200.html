@@ -77,12 +77,12 @@ N(".exap0200").cont({
     setComponents : function(cont) {
     	// 1. initialize buttons
     	N(".buttons a", cont.view).button();
-    	
+
     	// 2. initialize N.form
     	cont.form = N([]).form(N("#detail", cont.view));
-    	
+
     	// 2-1. Bind form data
-    	N.comm("data/" + cont._key + ".json").submit(function(data) {
+    	N.comm("rest/sample/" + cont._key).submit(function(data) {
        		// Data bind by N.form
        		cont.form.bind(0, data);
        	});
