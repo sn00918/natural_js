@@ -243,9 +243,6 @@
 					 * 서버에 요청을 보내기 전 실행됨.
 					 */
 					beforeSend : function(request, xhr, settings) {
-						if(request.options.dataType === "html" && request.options.target !== null && request.options.append === false) {
-							request.options.target.html('<table style="margin: 0;padding: 0;width: 100%;height: 100%;"><tr><td style="text-align: center;vertical-align: middle;border: 0;"><img src="images/loading.gif" height="24"></td></tr></table>');
-						}
 					},
 					/**
 					 * 서버에 요청이 성공 했을 경우 실행됨.
