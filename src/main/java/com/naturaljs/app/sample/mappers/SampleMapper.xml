@@ -25,7 +25,7 @@
 		<result column="GREETING" property="greeting" />
 		<result column="FAVORITEFRUIT" property="favoriteFruit" />
 	</resultMap>
-	
+
 	<select id="getSampleList" parameterType="java.util.Map" resultMap="sampleMap">
 		-- com.naturaljs.app.sample.mappers.SampleMapper.getSampleList
 		SELECT KEY,
@@ -48,7 +48,7 @@
 			   LONGITUDE,
 			   GREETING,
 			   FAVORITEFRUIT
-		  FROM SAMPLE 
+		  FROM SAMPLE
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 			<if test="name != null and name != ''">
 		   AND name like '%' || #{name} || '%'
@@ -62,7 +62,7 @@
 		</trim>
 	  ORDER BY REGISTERED DESC
 	</select>
-	
+
 	<select id="getSample" parameterType="int" resultMap="sampleMap">
 		-- com.naturaljs.app.sample.mappers.SampleMapper.getSample
 		SELECT KEY,
@@ -85,13 +85,13 @@
 			   LONGITUDE,
 			   GREETING,
 			   FAVORITEFRUIT
-		  FROM SAMPLE 
+		  FROM SAMPLE
 		 WHERE KEY = #{key}
 	</select>
 
 	<insert id="insertSample" parameterType="java.util.Map">
 		-- com.naturaljs.app.sample.mappers.SampleMapper.insertSample
-		INSERT INTO SAMPLE ( 
+		INSERT INTO SAMPLE (
 			index,
 			guid,
 			isActive,
@@ -133,10 +133,10 @@
 			#{favoriteFruit}
 		)
 	</insert>
-	
+
 	<update id="updateSample" parameterType="java.util.Map">
 		-- com.naturaljs.app.sample.mappers.SampleMapper.updateSample
-		UPDATE SAMPLE 
+		UPDATE SAMPLE
 			<trim prefix="SET" suffixOverrides=",">
 				<if test="index != null and index != ''">
 			   index = #{index},
@@ -180,6 +180,9 @@
 				<if test="about != null and about != ''">
 			   about = #{about},
 				</if>
+				<if test="registered != null and registered != ''">
+			   registered = TO_DATE(#{registered}, 'YYYYMMDD'),
+				</if>
 				<if test="latitude != null and latitude != ''">
 			   latitude = #{latitude},
 				</if>
@@ -195,11 +198,11 @@
 			</trim>
 		 WHERE key = #{key}
 	</update>
-	
+
 	<delete id="deleteSample" parameterType="int">
 		-- com.naturaljs.app.sample.mappers.SampleMapper.deleteSample
-		DELETE FROM SAMPLE 
+		DELETE FROM SAMPLE
 		 WHERE key = #{key}
 	</delete>
-	
+
 </mapper>
