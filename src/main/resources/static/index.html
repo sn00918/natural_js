@@ -22,6 +22,7 @@
 <![endif]-->
 
 <link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/github-markdown.css" />
 <link rel="stylesheet" type="text/css" href="js/prism/css/prism.css" />
 
 <link rel="stylesheet" type="text/css" href="js/natural_js/css/natural.ui.css" />
@@ -34,6 +35,7 @@
 <script type="text/javascript" charset="utf-8" src="js/index.js"></script>
 
 <script type="text/javascript" charset="utf-8" src="js/prism/prism.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/showdown.min.js"></script>
 
 <!--[if lt IE 9]>
 <style>
@@ -49,7 +51,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		IndexController.init(window);
-		
+
 		$(window).resize(function() {
 			if($(window).width() > 578) {
 				$("meta[name=viewport]").attr("content", "width=device-width, user-scalable=0")
