@@ -3,7 +3,7 @@ var IndexController = {
 	init : function(window) {
 		this.setLocale();
 		if(!window.localStorage.themeColor || window.localStorage.themeColor === "undefined") {
-			window.localStorage.themeColor = "teal";
+			window.localStorage.themeColor = "green";
 		}
 		this.reloadCss();
 		//this.loadWebFont();
@@ -45,7 +45,7 @@ var IndexController = {
 	 * CSS 를 다시 불러오면 filter 에서 컬러값을 치환 함.
 	 */
 	reloadCss : function() {
-		if(this.themeColor !== "teal") {
+		if(window.localStorage.themeColor !== "green") {
 			$("head > link[rel=stylesheet]").each(function() {
 				N.comm({
 					url : $(this).attr("href"),
@@ -54,7 +54,7 @@ var IndexController = {
 				}).submit(function(data) {
 					$('<style type="text/css">\n' + data + '</style>').appendTo("head");
 				});
-			});			
+			});
 		}
 	},
 	/**
@@ -146,8 +146,8 @@ var IndexController = {
 };
 
 var CommonUtilController = {
-    setPageLinks : function(eles) {
-		N(eles).bind("click", function(e) {
+    setPageLinks : function(eles, view) {
+    	view.on("click." + view.data("pageid"), eles, function(e) {
 			var href = N(this).attr("href");
 			var text = N(this).text();
 			if(N.string.trimToEmpty(href).indexOf("#") < 0
@@ -197,6 +197,45 @@ var CommonUtilController = {
 				});
 			}
 		});
+	},
+	setIndex : function(view) {
+		var contents = view.find(".contents");
+
+    	if(contents.length > 0) {
+    		contents.prepend('<li class="title">' + (N.locale() === "ko_KR" ? "색인" : "Index") + '</li>');
+
+    		var isHasH2 = view.find("h2").not(".notIndex").length > 0 ? true : false;
+    		view.find(isHasH2 ? "h2, h3" : "h3, h4").not(".notIndex").each(function() {
+				var selfEle = $(this);
+				var sId = location.hash.replace("#", "") + "/" + view.data("pageid") + "/" + Math.random();
+				selfEle.attr("id", sId);
+				if(selfEle.is(isHasH2 ? "h3" : "h4")) {
+					if(contents.children("li:last").find("ul").length > 0) {
+						contents.children("li:last").find("ul").append('<li><a class="link" href="#' + sId + '">' + N.string.trim(selfEle.text()) + '</a></li>');
+					} else {
+						$('<ul><li><a class="link" href="#' + sId + '">' + N.string.trim(selfEle.text()) + '</a></li></ul>').appendTo(contents.find("li:last"));
+					}
+				} else {
+					contents.append('<li><a class="link" href="#' + sId + '">' + N.string.trim(selfEle.text()) + '</a></li>');
+				}
+			});
+    	}
+
+    	var navHeight = N(".header nav").outerHeight();
+    	var marginTop = 179 + $("header").height();
+		N(window).unbind("scroll.aop").bind("scroll.aop", function(e) {
+			if(N(this).scrollTop() > marginTop - navHeight) {
+				contents.css({
+					"position" : "fixed",
+					"top" : navHeight
+				});
+			} else {
+				contents.css({
+					"position" : "absolute",
+					"top" : marginTop
+				});
+			}
+		}).trigger("scroll.aop");
 	},
 	sourceCode : function(view, url) {
 		var btnEle = N('<a class="click">View Source Code</a>');

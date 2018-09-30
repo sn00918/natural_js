@@ -72,7 +72,25 @@
 		 *   - 아래는 AOP 관련 된 예제코드 이므로 사용하지 않는다면 cont 하위의 모든 구문을 삭제하고 사용 바랍니다.
 		 */
 		"cont" : {
-			"advisors" : [{
+			"advisors" : [{ // md 파일 변환
+				"pointcut" : [
+					".intr0100",
+					".gtst0100",
+					".gtst0200:init$"
+				].join(","),
+				"adviceType" : "before",
+				"fn" : function(cont, fnChain, args){ /* cont 컨트롤러, fnChain 함수명, args 인자 */
+					/* markdown 파일 로딩 후  html 로 변환 */
+					N.comm({
+						url : cont.request.options.url.replace(/html/g, "md").replace(/\.md/g, "_" + N.locale() + ".md"),
+						dataType : "text",
+						type : "GET"
+					}).submit(function(data) {
+						cont.view.addClass("markdown-body").html((new showdown.Converter()).makeHtml(data));
+						CommonUtilController.setIndex(cont.view);
+					});
+				}
+			}, {
 				"pointcut" : [
 					".refr010201",
 					".refr010202",
@@ -112,7 +130,24 @@
 
 			    	//load api demo page
 			    	N(".apidemo", view).each(function() {
-			    		N(this).comm("html/apid/" + N(this).data("page") + ".html").submit();
+			    		N(this).comm("html/apid/" + N(this).data("page") + ".html").submit(function() {
+			    			var view_ = view.find(".view_context__");
+
+			    			// inject description to option inputs
+			    			if(view.closest(".refr0104").length === 0) {
+			    				var descTableEle;
+			    				if(view.closest(".refr010302").length === 0) {
+			    					descTableEle = $("h3:contains('기본옵션'), h3:contains('Default Options')", view).next("table:first");
+			    				} else {
+			    					descTableEle = $("h4:contains('기본옵션'), h4:contains('Default Options')", view).next("table:first");
+			    				}
+				         		var optNm;
+				         		N(".form:first, .form#otherPage", view_).find(":input[id]").each(function() {
+				    	     		optNm = this.id;
+				    	     		$(this).after('<div class="demo-desc">' + $.trim(descTableEle.find("tr").find(">td:first").filter(":contains('" + optNm + "'):first").siblings(":last").html()) + '</div>');
+				    	     	});
+			    			}
+			    		});
 			    	});
 				}
 			}, {
@@ -131,7 +166,7 @@
 				    	});
 			    	}
 
-			    	CommonUtilController.setPageLinks(N("a.link", view));
+			    	CommonUtilController.setPageLinks("a.link", view);
 				}
 			}, {
 				"pointcut" : [
@@ -145,7 +180,7 @@
 				"fn" : function(cont, fnChain, args){ /* cont 컨트롤러, fnChain 함수명, args 인자 */
 					var view = args[0];
 
-			    	CommonUtilController.setPageLinks(N("a.link", view));
+			    	CommonUtilController.setPageLinks("a.link", view);
 				}
 			}, {
 				"pointcut" : "^init$",
@@ -153,7 +188,7 @@
 				"fn" : function(cont, fnChain, args){ /* cont 컨트롤러, fnChain 함수명, args 인자 */
 					var view = args[0];
 
-					CommonUtilController.setPageLinks(N("a.link", view));
+					CommonUtilController.setPageLinks("a.link", view);
 
 			    	if(cont.view.hasClass("view-code")) {
 			    		CommonUtilController.sourceCode(cont.view, cont.request.get("url"));
@@ -172,43 +207,7 @@
 					// Multilingual handling
 			    	CommonUtilController.i18n(undefined, cont.request.options.target);
 
-			    	var contents = cont.view.find(".contents");
-
-			    	if(contents.length > 0) {
-			    		contents.prepend('<li class="title">' + (N.locale() === "ko_KR" ? "색인" : "Index") + '</li>');
-
-			    		var isHasH2 = cont.view.find("h2").not(".notIndex").length > 0 ? true : false;
-			    		cont.view.find(isHasH2 ? "h2, h3" : "h3, h4").not(".notIndex").each(function() {
-							var selfEle = $(this);
-							var sId = location.hash.replace("#", "") + "/" + cont.view.data("pageid") + "/" + Math.random();
-							selfEle.attr("id", sId);
-							if(selfEle.is(isHasH2 ? "h3" : "h4")) {
-								if(contents.children("li:last").find("ul").length > 0) {
-									contents.children("li:last").find("ul").append('<li><a class="link" href="#' + sId + '">' + N.string.trim(selfEle.text()) + '</a></li>');
-								} else {
-									$('<ul><li><a class="link" href="#' + sId + '">' + N.string.trim(selfEle.text()) + '</a></li></ul>').appendTo(contents.find("li:last"));
-								}
-							} else {
-								contents.append('<li><a class="link" href="#' + sId + '">' + N.string.trim(selfEle.text()) + '</a></li>');
-							}
-						});
-			    	}
-
-			    	var navHeight = N(".header nav").outerHeight();
-			    	var marginTop = 179 + $("header").height();
-					N(window).unbind("scroll.aop").bind("scroll.aop", function(e) {
-						if(N(this).scrollTop() > marginTop - navHeight) {
-							contents.css({
-								"position" : "fixed",
-								"top" : navHeight
-							});
-						} else {
-							contents.css({
-								"position" : "absolute",
-								"top" : marginTop
-							});
-						}
-					}).trigger("scroll.aop");
+			    	CommonUtilController.setIndex(cont.view);
 				}
 			}]
 		},
@@ -266,13 +265,15 @@
 							}
 
 							// color theme
-							$(IndexController.colorPalette.teal).each(function(i, color) {
-								data = data.replace(new RegExp(color, "gi"), IndexController.colorPalette[window.localStorage.themeColor][i]);
+							if(window.localStorage.themeColor !== "green") {
+								$(IndexController.colorPalette.green).each(function(i, color) {
+									data = data.replace(new RegExp(color, "gi"), IndexController.colorPalette[window.localStorage.themeColor][i]);
 
-								if(opts.contentType === "text/css") {
-									data = data.replace(/url\(/gi, "*url(");
-								}
-							});
+									if(opts.contentType === "text/css") {
+										data = data.replace(/url\(/gi, "*url(");
+									}
+								});
+							}
 
 							return data = [data.slice(0, cutIndex), '\n//# sourceURL=' + opts.url + "\n", data.slice(cutIndex)].join("");
 						}
@@ -627,7 +628,13 @@
 					"prev" : "Previous",
 					"next" : "Next"
 				}
-			}
+			},
+			"yearsPanelPosition" : "top",
+			"monthsPanelPosition" : "top",
+			"yearChangeInput" : true,
+			"monthChangeInput" : true,
+			"touchMonthChange" : true,
+			"scrollMonthChange" : true
 		},
 		"select" : {
 			/**
@@ -741,7 +748,7 @@
 				/**
 				 * 컬럼 리사이즈 시 다른컬럼이 밀릴때 아래 수치 조절(기본값 : 0)
 				 */
-				"resizableCorrectionWidth" : N.browser.is("chrome") ? 1 : N.browser.is("safari") ? 2 : 0,
+				"resizableCorrectionWidth" : N.browser.is("safari") ? 1 : 0,
 				/**
 				 * 헤더고정형 중 마지막 컬럼 클릭 시 다른컬럼이 밀릴때 아래 수치 조절(기본값 : 0)
 				 */
