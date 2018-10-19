@@ -521,10 +521,10 @@
 			"global" : {
 				"okBtnStyle" : {
 					color : "yellowgreen",
-					size : "medium"
+					size : "large"
 				},
 				"cancelBtnStyle" : {
-					size : "medium"
+					size : "large"
 				}
 			},
 			/**
