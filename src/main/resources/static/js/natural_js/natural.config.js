@@ -577,10 +577,7 @@
 			"onShowG" : function() {
 				N(".header nav").css("z-index", "0");
 			},
-			"onOkG" : function() {
-				N(".header nav").css("z-index", "");
-			},
-			"onCancelG" : function() {
+			"onRemoveG" : function() {
 				N(".header nav").css("z-index", "");
 			}
 		},
@@ -594,12 +591,6 @@
 				N(".header nav").css("z-index", "0");
 			},
 			"onCloseG" : function() {
-				N(".header nav").css("z-index", "");
-			},
-			"onOkG" : function() {
-				N(".header nav").css("z-index", "");
-			},
-			"onCancelG" : function() {
 				N(".header nav").css("z-index", "");
 			}
 		},
