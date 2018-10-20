@@ -573,12 +573,6 @@
 					"confirm" : "OK",
 					"cancel" : "Cancel"
 				}
-			},
-			"onShowG" : function() {
-				N(".header nav").css("z-index", "0");
-			},
-			"onRemoveG" : function() {
-				N(".header nav").css("z-index", "");
 			}
 		},
 		"button" : {
@@ -586,13 +580,7 @@
 		},
 		"popup" : {
 			"draggable" : true,
-			"alwaysOnTop" : true,
-			"onOpenG" : function() {
-				N(".header nav").css("z-index", "0");
-			},
-			"onCloseG" : function() {
-				N(".header nav").css("z-index", "");
-			}
+			"alwaysOnTop" : true
 		},
 		"tab" : {
 			onActive : function(tabIdx, tabEle, contentEle, tabEles, contentEles) {
