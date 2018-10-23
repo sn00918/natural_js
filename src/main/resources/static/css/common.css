@@ -10,6 +10,8 @@
 html {
 	-ms-text-size-adjust: 100%; /* 2 */
 	-webkit-text-size-adjust: 100%; /* 2 */
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 /**
@@ -19,7 +21,6 @@ body {
 	margin: 0;
 	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "dotum", "Segoe UI", sans-serif;
 	color : rgba(0, 0, 0, 0.87);
-	overflow-y: scroll;
 }
 
 [lang] {
@@ -409,15 +410,15 @@ article .searchBox li>label label {
 	font-weight: normal;
 }
 
-article .searchBox input, 
+article .searchBox input,
 article .searchBox select,
 article .searchBox textarea {
 	margin-left: 15px;
 	border-color: #C8E6C9;
 }
 
-article .searchBox input[type='text'], 
-article .searchBox input[type='number'], 
+article .searchBox input[type='text'],
+article .searchBox input[type='number'],
 article .searchBox input[type='tel'] {
 	width: 85px;
 }
