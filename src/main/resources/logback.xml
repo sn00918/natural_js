@@ -25,6 +25,10 @@ jdbc.connection : Logs connection open and close events
 		<appender-ref ref="STDOUT" />
 	</logger>
 
+	<logger name="com.naturaljs" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 	</root>
