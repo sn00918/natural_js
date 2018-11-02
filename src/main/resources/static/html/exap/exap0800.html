@@ -172,8 +172,7 @@ N(".exap0800").cont({
        		onSelect : function(index, rowEle, data, beforeRow) {
        			// Grid row select event
 
-       			// cont.detailForm.row() = -1 is unbind flag
-       			if(cont.detailForm.row() > -1 && data[index].rowStatus !== "insert") {
+       			if(data[index].rowStatus !== "insert") {
 	       			if(!cont.detailForm.validate()) {
 	       				return false;
 	       			}
