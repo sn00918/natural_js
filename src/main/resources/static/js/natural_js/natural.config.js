@@ -634,6 +634,13 @@
 			},
 			"yearsPanelPosition" : "top",
 			"monthsPanelPosition" : "top",
+			/**
+             * monthonly 옵션이 true 일때 전역 옵션
+             */
+            "monthonlyOpts" : {
+                "yearsPanelPosition" : "left",
+                "monthsPanelPosition" : "left",
+            },
 			"yearChangeInput" : true,
 			"monthChangeInput" : true,
 			"touchMonthChange" : true,
