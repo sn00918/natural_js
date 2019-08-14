@@ -20,6 +20,7 @@
 		폼이 정상적으로 작동하지 않을 수 있습니다. add 하면서 기본값을 지정 해야 한다면 add 의 인자로 기본값이 될 data를 넣어 주세요.
 		어쩔수 없이 add 나 bind 후 같은 폼요소에 다시 bind 해야 한 다면 add 나 bind 후 unbind 를 호출 한 다음 bind 를 호출 하거나 폼 초기화 시 autoUnbind 옵션을 활성화 시켜 주세요.
 	</p>
+    <p class="alert">입력요소의 값을 변경하거나 val 메서드로 데이터를 변경하면 rowStatus 프로퍼티가 생성되고, 입력은 "insert",  수정은 "update",  삭제는 "delete" 값이 입력 됩니다.</p>
 
 	<h3>API DEMO</h3>
 	<p lang="ko_KR" class="alert">데모에는 모든 옵션 및 기능을 포함하고 있지 않습니다. 전체 기능 목록은 데모 바로 아래 있는 기능 문서들을 참고 바랍니다.</p>
@@ -271,7 +272,7 @@
 		<span lang="ko_KR">함수</span>
 		<span lang="en_US">Methods</span>
 	</h3>
-	<table>
+	<table style="width: auto;">
 		<tr>
 			<th>Name</th>
 			<th>Arguments</th>
@@ -748,6 +749,29 @@ var data = [{
     // 2. 폼 바인드
 	N(data).form("#formExample40").bind();
 </script></xmp></code></pre>
+
+    <h4 class="notIndex">5. N.select 를 사용하지 않고 radio, checkbox 입력요소를 N.form 과 연동</h4>
+    <p class="alert">radio 와 checkbox 입력요소의 첫번째 요소에 name 속성값과 같은 id 속성값을 반드시 표기 해야 합니다.</p>
+    <pre class="line-numbers"><code class="language-markup"><xmp>
+<div class="radio">
+    <label><input id="age" name="age" value="10"><span>10대</span></label>
+    <label><input name="age" value="20"><span>20대</span></label>
+    <label><input name="age" value="30"><span>30대</span></label>
+</div>
+<div class="checkbox">
+    <label><input id="color" name="color" value="red"><span>빨간색</span></label>
+    <label><input name="color" value="blue"><span>파란색</span></label>
+    <label><input name="color" value="green"><span>녹색</span></label>
+</div>
+
+<script type="text/javascript">
+    var data = {
+        age : 10,
+        color : ["red", "green"]
+    };
+    // 1. 폼 바인드
+    N(data).form("#formExample40").bind();
+</script></xmp></code></pre>  
 
 </article>
 
