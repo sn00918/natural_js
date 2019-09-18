@@ -280,7 +280,7 @@
 					 */
 					error : function(request, xhr, textStatus, errorThrown) {
 						if(request.options.dataType === "html") {
-							if(request.options.target.html !== undefined) {
+							if(request.options.target != null && request.options.target.html !== undefined) {
 								request.options.target.html('<div align="center" style="margin-top: 140px;margin-bottom: 140px;">[ ' + request.options.url + ' ] 페이지를 불러오는 도중 에러가 발생 했습니다.</div>');
 							} else {
 								N(window).alert('[ ' + request.options.url + ' ] 페이지를 불러오는 도중 에러가 발생 했습니다.').show();
