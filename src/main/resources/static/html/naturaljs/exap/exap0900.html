@@ -198,7 +198,7 @@ N(".exap0900").cont({
     },
     setCodes : function(cont, codeParams, afterCodeInitFn) {
     	// 1. initialize N.select and bind the code data.
-    	N({ codes : codeParams }).comm("html/naturaljs/exap/data/code.json").submit(function(data, request) {
+    	N({ codes : codeParams }).comm("rest/sample/code").submit(function(data, request) {
     		N(codeParams).each(function(i, code) {
     			N(data).datafilter("code === '" + code + "'").select(N("#" + code, cont.view)).bind();
     		});

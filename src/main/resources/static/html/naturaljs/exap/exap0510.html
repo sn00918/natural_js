@@ -95,7 +95,7 @@ N(".exap0500").cont({
     },
     setCodes : function(cont, codeParams, afterCodeInitFn) {
     	// 1. initialize N.select and bind the code data.
-    	N({ codes : codeParams }).comm("html/naturaljs/exap/data/code.json").submit(function(data, request) {
+    	N({ codes : codeParams }).comm("rest/sample/code").submit(function(data, request) {
     		N(codeParams).each(function(i, code) {
     			var filterdData = N(data).datafilter("code === '" + code + "'");
     			filterdData.select(N(".searchBox #" + code, cont.view)).bind();
@@ -130,7 +130,7 @@ N(".exap0500").cont({
     	N("#btnSearch", cont.view).click(function(e) {
             e.preventDefault();
             if(cont.form.validate()) {
-            	N(cont.form.data(true)).comm("html/naturaljs/exap/data/sample.json").submit(function(data, request) {
+            	N(cont.form.data(true)).comm("rest/sample").submit(function(data, request) {
              		// Data bind by N.grid
              		cont.grid.bind(data);
              	});
@@ -174,7 +174,7 @@ N(".exap0500").cont({
             			N(cont.grid.data("modified")).comm({
             				type : "PUT",
             				dataIsArray : true, // When sending multiple rows of data(array<json object>).
-            				url : "html/naturaljs/exap/data/sample.json"
+            				url : "rest/sample"
             			}).submit(function(data) {
             				var msg = N.message.get(cont.messages, "EXAP0510-0002") + "<br>";
             				msg += N.message.get(cont.messages, "EXAP0500-0006", [data.insert]) + "<br>";

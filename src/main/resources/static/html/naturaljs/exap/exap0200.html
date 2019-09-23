@@ -83,7 +83,7 @@ N(".exap0200").cont({
     	cont.form = N([]).form(N("#detail", cont.view));
     	
     	// 2-1. Bind form data
-    	N.comm("html/naturaljs/exap/data/" + cont._key + ".json").submit(function(data) {
+    	N.comm("rest/sample/" + cont._key).submit(function(data) {
        		// Data bind by N.form
        		cont.form.bind(0, data);
        	});
