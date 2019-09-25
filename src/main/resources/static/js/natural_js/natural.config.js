@@ -831,36 +831,34 @@
 
     // Natural-JS API 메뉴얼 용 advisors
     N.context.attr("architecture").cont.advisors.push({ // 소스보기 버튼 처리
-        "pointcut" : "^init$",
+        "pointcut" : ".view-code:^init$",
         "adviceType" : "before",
         "fn" : function(cont, fnChain, args){ /* cont 컨트롤러, fnChain 함수명, args 인자 */
             var view = args[0];
             var url = cont.request.get("url");
             
-            if(cont.view.hasClass("view-code")) {
-                var btnEle = N('<a class="click">View Source Code</a>');
-                if(view.find(btnEle).length === 0) {
-                    view.append(btnEle);
-                    view.append('<pre id="sourceCodeBox" class="line-numbers" style="display: none;"><code id="sourceCode" class="language-markup"></code></pre>');
-                    btnEle.click(function() {
-                        var sourceCodeBox = btnEle.next("#sourceCodeBox");
-                        if(!sourceCodeBox.is(":visible")) {
-                            sourceCodeBox.slideDown();
-                        } else {
-                            sourceCodeBox.slideUp();
-                        }
-                    });
-                    N.comm({
-                        url : url,
-                        contentType : "text/plain; charset=UTF-8",
-                        dataType : "text",
-                        type : "GET"
-                    }).submit(function(html) {
-                        var tempView = $("<div>" + html + "</div>");
-                        APP.indx.i18n(undefined, tempView);
-                        N("#sourceCode", view).text(tempView.html().replace(/&quot;/g, '"'));
-                    });
-                }
+            var btnEle = N('<a class="click">View Source Code</a>');
+            if(view.find(btnEle).length === 0) {
+                view.append(btnEle);
+                view.append('<pre id="sourceCodeBox" class="line-numbers" style="display: none;"><code id="sourceCode" class="language-markup"></code></pre>');
+                btnEle.click(function() {
+                    var sourceCodeBox = btnEle.next("#sourceCodeBox");
+                    if(!sourceCodeBox.is(":visible")) {
+                        sourceCodeBox.slideDown();
+                    } else {
+                        sourceCodeBox.slideUp();
+                    }
+                });
+                N.comm({
+                    url : url,
+                    contentType : "text/plain; charset=UTF-8",
+                    dataType : "text",
+                    type : "GET"
+                }).submit(function(html) {
+                    var tempView = $("<div>" + html + "</div>");
+                    APP.indx.i18n(undefined, tempView);
+                    N("#sourceCode", view).text(tempView.html().replace(/&quot;/g, '"'));
+                });
             }
         }
     });
