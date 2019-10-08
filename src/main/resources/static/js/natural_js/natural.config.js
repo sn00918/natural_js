@@ -467,7 +467,7 @@
         "tab" : {
             "tabScrollCorrection" : {
                 tabContainerWidthCorrectionPx : 1,
-                tabContainerWidthReCalcDelayTime : 0
+                tabContainerWidthReCalcDelayTime : 1
             }
         },
         "datepicker" : {
