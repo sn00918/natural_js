@@ -104,7 +104,7 @@ N(".exap0400").cont({
     },
     setCodes : function(cont, codeParams, afterCodeInitFn) {
     	// 1. initialize N.select and bind the code data.
-    	N({ codes : codeParams }).comm("rest/sample/code").submit(function(data, request) {
+    	N({ codes : codeParams }).comm("html/naturaljs/exap/data/code.json").submit(function(data, request) {
     		N(codeParams).each(function(i, code) {
     			N(data).datafilter("code === '" + code + "'").select(N("#detail #" + code, cont.view)).bind();
     		});
@@ -123,7 +123,7 @@ N(".exap0400").cont({
     	});
     	
     	// 3-1. N.form data bind
-    	N.comm("rest/sample/" + cont._key).submit(function(data) {
+    	N.comm("html/naturaljs/exap/data/" + cont._key + ".json").submit(function(data) {
        		// Data bind by N.form
        		cont.form.bind(0, data);
        	});
@@ -134,7 +134,7 @@ N(".exap0400").cont({
     	N("#btnSave", cont.view).click(function(e) {
             e.preventDefault();
             if(cont.form.data(true)[0].rowStatus === undefined) {
-            	N(window).alert(N.message.get(cont.messages, "EXAP0400-0004")).show();
+            	N.notify.add(N.message.get(cont.messages, "EXAP0400-0004"));
             	return false;
             }
             if(cont.form.validate()) {
@@ -144,7 +144,7 @@ N(".exap0400").cont({
             		onOk : function() {
             			N(cont.form.data(true)).comm({
             				type : "PATCH",
-            				url : "rest/sample/" + cont._key
+            				url : "html/naturaljs/exap/data/" + cont._key + ".json"
             			}).submit(function(data) {
             				var msg;
             				if(data > 0) {
