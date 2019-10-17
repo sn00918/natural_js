@@ -26,7 +26,7 @@
 					</a>
 					<a id="btnSearch" href="#">
 						<span lang="ko_KR">조회</span>
-						<span lang="en_US">Search</span>
+						<span lang="en_US">Retrieve</span>
 					</a>
 				</li>
 			</ul>
@@ -92,20 +92,22 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+        
+        <div class="alert">
+            <p lang="ko_KR">목록(N.grid) 화면 에서 입력, 조회(삭제), 수정 화면으로 전환되는 예제 입니다.</p>
+            <p lang="en_US">This is an example of switching from the list (N.grid) view to the create, read(delete) and update view.</p>
+            <p lang="ko_KR">
+                N.grid 와 N.pagination 을 연동하여 페이징을 처리 합니다.<br>
+                <span class="alert">다음 예제는 브라우저로 받아진 전체 데이터에 대한 페이징이며 DB 페이징 방법은 N.pagination API 문서를 참고 바랍니다.</span>
+            </p>
+            <p lang="en_US">
+                N.grid and N.pagination are linked to handle pagination.<br>
+                <span class="alert">The following example is a pagination for the entire data received in the browser, see the N.pagination API documentation for how to handle DB pagination.</span>
+            </p>
+        </div>
     
-    <div class="alert">
-        <p lang="ko_KR">목록(N.grid) 화면 에서 입력, 조회(삭제), 수정 화면으로 전환되는 예제 입니다.</p>
-        <p lang="en_US">This is an example of switching from the list (N.grid) view to the create, read(delete) and update view.</p>
-        <p lang="ko_KR">
-            N.grid 와 N.pagination 을 연동하여 페이징을 처리 합니다.<br>
-            <span class="alert">다음 예제는 브라우저로 받아진 전체 데이터에 대한 페이징이며 DB 페이징 방법은 N.pagination API 문서를 참고 바랍니다.</span>
-        </p>
-        <p lang="en_US">
-            N.grid and N.pagination are linked to handle pagination.<br>
-            <span class="alert">The following example is a pagination for the entire data received in the browser, see the N.pagination API documentation for how to handle DB pagination.</span>
-        </p>
-    </div>
+	</div>
+
 </article>
 
 <script type="text/javascript">
@@ -119,7 +121,7 @@ N(".exap0600").cont({
     },
     setCodes : function(cont, codeParams, afterCodeInitFn) {
     	// 1. initialize N.select and bind the code data.
-    	N({ codes : codeParams }).comm("rest/sample/code").submit(function(data, request) {
+    	N({ codes : codeParams }).comm("html/naturaljs/exap/data/code.json").submit(function(data, request) {
     		N(codeParams).each(function(i, code) {
     			N(data).datafilter("code === '" + code + "'").select(N(".searchBox #" + code, cont.view)).bind();
     		});
@@ -178,7 +180,7 @@ N(".exap0600").cont({
             e.preventDefault();
             if(cont.form.validate()) {
     			// Temporary code
-    			N(cont.form.data()).comm("rest/sample").submit(function(data) {
+    			N(cont.form.data()).comm("html/naturaljs/exap/data/sample.json").submit(function(data) {
     				cont.pagination.pageNo(cont.request.attr("pageNo") !== undefined ? cont.request.attr("pageNo") : 1).bind(data);
     				cont.request.removeAttr("pageNo");
              	});
