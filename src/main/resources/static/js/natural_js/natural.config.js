@@ -82,7 +82,7 @@
             /**
              * Communication Filter
              *  - N.comm 으로 호출되는 모든요청이 아래에서 정의한 필터를 통과하게 되므로 서버 요청 시 공통적으로 적용해야 할 부분을 정의 하면 됨.
-             *  - 필터 인자 중 request 인자에 요청에 대한 유용한 정보가 담겨 있음. 
+             *  - 필터 인자 중 request 인자에 요청에 대한 유용한 정보가 담겨 있음.
              *  - request 객체에서 제공 해 주는 정보는 http://bbalganjjm.github.io/natural_js/ 에서 Communicator.request 메뉴를 참고 바람.
              *  - 필터를 여러개 걸수 있으며 단위 필터명은 아무거나 지정하면 됨.
              *  - 수행 순서는 order 속성(숫자가 적을 수록 먼저 실행 됨)이 정의 된 필터가 실행 된 다음 order 속성이 정의 되지 않은 필터들이 실행 됨.
@@ -115,7 +115,7 @@
                             if(location.hostname === "localhost" || location.hostname === "127.0.0.1") {
                                 // [ Natural-CODE ] 코드 인스펙션
                                 N.code.inspection.report.console(N.code.inspection.test(data), opts.url);
-                                
+
                                 // [ Natural-CODE ] 디버깅 지원을 위한 컨트롤러의 sourceURL 자동 삽입 처리
                                 data = N.code.addSourceURL(data, opts.url);
                             }
@@ -770,7 +770,7 @@
                         docId = "home0100";
                         url = "html/naturaljs/" + docId.substring(0, 4) + "/" + docId + ".html";
                     }
-                    
+
                     var hashVal = docId + "$" + this.options.docs[docId].docNm + "$" + url;
                     if(decodeURIComponent(atob(location.hash.replace("#", ""))) != hashVal) {
                         location.hash = btoa(encodeURIComponent(hashVal));
@@ -841,7 +841,7 @@
     N.context.attr("code", {
         /**
          * 검사 제외 구문
-         * 
+         *
          * 검출 된 코드 내용 중 일치하는 부분을 입력.
          */
         excludes : [
@@ -879,16 +879,16 @@
             }
         }
     });
-    
+
     // Natural-JS API 메뉴얼 용 advisors
     N.context.attr("architecture").cont.advisors.push({ // 소스보기 버튼 처리
         "pointcut" : ".view-code:^init$",
         "adviceType" : "before",
         "fn" : function(cont, fnChain, args){ /* cont 컨트롤러, fnChain 함수명, args 인자 */
-            var view = args[0];
+        	var view = args[0];
             var url = cont.request.get("url");
-            
-            var btnEle = N('<a class="click">View Source Code</a>');
+
+            var btnEle = N('<br><a class="click">View Source Code</a>');
             if(view.find(btnEle).length === 0) {
                 view.append(btnEle);
                 view.append('<pre id="sourceCodeBox" class="line-numbers" style="display: none;"><code id="sourceCode" class="language-markup"></code></pre>');
