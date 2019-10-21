@@ -116,7 +116,7 @@
                                 // [ Natural-CODE ] 코드 인스펙션
                                 N.code.inspection.report.console(N.code.inspection.test(data), opts.url);
 
-                                // [ Natural-CODE ] 디버깅 지원을 위한 컨트롤러의 sourceURL 자동 삽입 처리
+                             // [ Natural-CODE ] Controller object 의 디버깅을 위해 HTML 요청 마다 sourceURL 을 자동으로 삽입.
                                 data = N.code.addSourceURL(data, opts.url);
                             }
 
@@ -846,7 +846,7 @@
             abortOnError : false,
             /**
              * 검사 대상에서 제외 할 구문들을 문자열로 정의 합니다.
-             * 
+             *
              * 검출 된 코드 내용 중 다음 문자열이 포함 되어 있으면 제외 처리 됩니다.
              *  ex) excludes : [ ".index-header", ".page-header", ".index-lefter", ".index-contents", ".index-footer" ]
              */
