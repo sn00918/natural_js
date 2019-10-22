@@ -162,7 +162,7 @@
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             }
         },
-mobileResponsiveView : function() {
+        mobileResponsiveView : function() {
             
             // API 문서 모바일 용 보기 처리 이벤트
             N(window).on("resize.mobile", function(e, view) {
@@ -172,7 +172,7 @@ mobileResponsiveView : function() {
                     N(".agrsIndex", view).remove();
                     N(".function-desc", view).removeClass("function-desc");
 
-                    if($(window).width() <= 610) {
+                    if($(window).width() <= 593) { // 610 - 27px(padding?)
                         $("td:contains('N/A')", view).css({
                             "visibility": "hidden",
                             "padding" : 0,
