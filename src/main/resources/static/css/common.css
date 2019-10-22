@@ -640,7 +640,7 @@ pre.shell>code {
 }
 
 /* Mobile */
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 768px) {
     .main-nav {
         display : none;
     }
@@ -747,21 +747,6 @@ pre.shell>code {
         font-weight: 600;
     }
 
-    #pluginExtention .apiDoc .api.form tr>td:first-child,
-    #n .apiDoc .api.form tr>td:first-child,
-    #gc .apiDoc .api.form tr>td:first-child,
-    #string .apiDoc .api.form tr>td:first-child,
-    #element .apiDoc .api.form tr>td:first-child,
-    #date .apiDoc .api.form tr>td:first-child,
-    #browser .apiDoc .api.form tr>td:first-child,
-    #message .apiDoc .api.form tr>td:first-child,
-    #array .apiDoc .api.form tr>td:first-child,
-    #json .apiDoc .api.form tr>td:first-child,
-    #event .apiDoc .api.form tr>td:first-child,
-    #functions .apiDoc .api.form tr>td:first-child,
-    #methods .apiDoc .api.form tr>td:first-child {
-        margin-bottom: 0;
-    }
     #pluginExtention .apiDoc .api.form td:nth-child(2):before,
     #n .apiDoc .api.form td:nth-child(2):before,
     #gc .apiDoc .api.form td:nth-child(2):before,

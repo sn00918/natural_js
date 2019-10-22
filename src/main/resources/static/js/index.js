@@ -167,12 +167,16 @@
             // API 문서 모바일 용 보기 처리 이벤트
             N(window).on("resize.mobile", function(e, view) {
 
+                if(view.closest("#defaultoptions").length > 0) {
+                    return false;
+                }
+                
                 if (e.target == window || view) { // 모바일에서 scroll 시 resize 이벤트가 firing 되서(ios, android 동일).
 
                     N(".agrsIndex", view).remove();
                     N(".function-desc", view).removeClass("function-desc");
 
-                    if($(window).width() <= 593) { // 610 - 27px(padding?)
+                    if($(window).width() <= 751) { // 768 - 17px(?)
                         $("td:contains('N/A')", view).css({
                             "visibility": "hidden",
                             "padding" : 0,
