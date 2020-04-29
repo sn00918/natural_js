@@ -125,6 +125,7 @@
         },
         setLocale : function() {
     		N.locale(window.sessionStorage.locale !== undefined ? window.sessionStorage.locale : IndexController.getLocale().toLowerCase().indexOf("ko") > -1 ? "ko_KR" : "en_US");
+    		N("html").attr("lang", N.locale().substring(0, 2));
     	},
         getLocale : function() {
         	if(navigator) {
@@ -163,16 +164,16 @@
             }
         },
         mobileResponsiveView : function() {
-            
+
             // API 문서 모바일 용 보기 처리 이벤트
             N(window).on("resize.mobile", function(e, view) {
-                
+
                 if (e.target == window || view) { // 모바일에서 scroll 시 resize 이벤트가 firing 되서(ios, android 동일).
-                    
+
                     if(!$("#methods").hasClass("visible__") && !$("#constructor").hasClass("visible__")) {
                         return false;
                     }
-                    
+
                     N(".agrsIndex", view).remove();
                     N(".function-desc", view).removeClass("function-desc");
 
@@ -197,7 +198,7 @@
                     } else {
                         $("[id='methods'], [id='constructor']").find("tr .function-desc").removeClass("function-desc");
                         $("[id='methods'], [id='constructor']").find("tr .agrsIndex").remove();
-                        
+
                         $("[id='methods'], [id='constructor']").find("td:contains('N/A')").css({
                             "visibility": "",
                             "padding" : "",
