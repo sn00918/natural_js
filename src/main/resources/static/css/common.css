@@ -26,6 +26,12 @@ body {
     line-height: 1.7;
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+}
+
 a {
     text-decoration: none;
     color: #0366d6;
@@ -114,6 +120,11 @@ th, td {
     padding: 2px 3px;
     line-height: 16px;
     height: 24px;
+}
+
+th.grid_head_fixed__,
+td.grid_body_fixed__ {
+    padding: 6px 3px;
 }
 
 th, tfoot td {
@@ -602,7 +613,7 @@ article .btnBox {
 
 .docs_contents__>.view_context__ h1 {
     padding-bottom: 0.5em;
-    font-size: 1.5em;
+    font-size: 1.3em;
     border-bottom: 1px solid #C8E6C9;
 }
 

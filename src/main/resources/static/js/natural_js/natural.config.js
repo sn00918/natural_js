@@ -127,7 +127,7 @@
                             if(request.options.target != null && request.options.target.html !== undefined) {
                                 request.options.target.html('<div style="text-align: center; margin-top: 140px;margin-bottom: 140px;">[ ' + request.options.url + ' ] 페이지를 불러오는 도중 에러가 발생 했습니다.</div>');
                             } else {
-                                N(window).alert('[ ' + request.options.url + ' ] 페이지를 불러오는 도중 에러가 발생 했습니다.').show();
+                                N(window).alert('An error occurred while loading the "' + request.options.url + '" page.').show();
                             }
                             if(request.options.target != null && request.options.target.is(".docs_contents")) {
                                 request.options.target.removeClass("hidden__").addClass("visible__")
@@ -382,7 +382,7 @@
     N.context.attr("ui", {
         "alert" : {
             /**
-             * Set the element to save the elements and N.popup components using jQuery Selector syntax.
+             * Set the element to save the elements of N.alert and N.popup components using jQuery Selector syntax.
              * Define the same value as the value of N.context.attr("architecture").page.context unless it is a special case.
              *  - If you use the Documents(N.docs) component, you don't have to specify it, but otherwise you must.
              *  - If it is not SPA(Single Page Application), please set it to "body".
@@ -422,7 +422,7 @@
              */
             "draggable" : true,
             /**
-             * Global draggable option
+             * Global alwaysOnTop option
              *  - If set to true, The message dialog is always displayed at the top.
              */
             "alwaysOnTop" : true,
@@ -467,13 +467,13 @@
              */
             "draggable" : true,
             /**
-             * Global draggable option
-             *  - If set to true, the popup dialog will be draggable by the title bar.
+             * Global alwaysOnTop option
+             *  - If set to true, The popup dialog is always displayed at the top.
              */
             "alwaysOnTop" : true,
             /**
              * Global button option
-             *  - If set to true, The popup dialog is always displayed at the top.
+             *  - If set to false, It does not create basic button(OK/Cancel buttons) related elements.
              */
             "button" : false,
             "windowScrollLock" : false,
@@ -515,25 +515,49 @@
                     "next" : "Next"
                 }
             },
+            /**
+             * Global yearsPanelPosition option.
+             *  - If set to top, the year selection element is created at the top.
+             *  - Set to "left" or "top".
+             */
             "yearsPanelPosition" : "top",
+            /**
+             * Global monthsPanelPosition option.
+             *  - If set to top, the month selection element is created at the top.
+             *  - Set to "left" or "top".
+             */
             "monthsPanelPosition" : "top",
             "monthonlyOpts" : {
                 /**
                  * Global yearsPanelPosition option when monthonly option is true.
                  *  - Specifies the position of the year selection element when the monthonly option is true.
-                 *  - Set to "left" or "top".
                  */
                 "yearsPanelPosition" : "left",
                 /**
                  * Global monthsPanelPosition option when monthonly option is true.
                  *  - Specifies the position of the month selection element when the monthonly option is true.
-                 *  - Set to "left" or "top".
                  */
                 "monthsPanelPosition" : "left",
             },
+            /**
+             * Global yearChangeInput option.
+             *  - If set to true, the changed date is applied immediately to the input element when the year is changed.
+             */
             "yearChangeInput" : true,
+            /**
+             * Global monthChangeInput option.
+             *  - If set to true, the changed date is applied immediately to the input element when the month is changed.
+             */
             "monthChangeInput" : true,
+            /**
+             * Global touchMonthChange option.
+             *  - If set to true, the month changes when you touch-drag left or right.
+             */
             "touchMonthChange" : true,
+            /**
+             * Global scrollMonthChange option.
+             *  - If set to true, the month will change when the mouse wheel is scrolled.
+             */
             "scrollMonthChange" : true
         },
         "select" : {
@@ -569,26 +593,19 @@
                 }
             },
             /**
-             * 스크롤 페이징 시 한번에 몇개를 가져올것인지 설정
+             * Global scrollPaging.size option.
+             *  - Specifies the number of rows to bind at a time when scroll paging.
              */
             "scrollPaging" : {
                 "size" : 30
             },
+            /**
+             * Global unselect option.
+             *  - If set to false, when the select option is true, selecting the selected row again does not cancel the selection.
+             */
             "unselect" : false
         },
         "grid" : {
-            /**
-             * 컬럼 넓이조절 기능 활성화 여부
-             */
-            "resizable" : true,
-            /**
-             * 소트 기능 활성화 여부
-             */
-            "sortable" : true,
-            /**
-             * 필터 기능 활성화 여부
-             */
-            "filter" : true,
             /**
              * Sort sort indicator when sort function is activated, You can also enter HTML tags
              */
@@ -596,17 +613,6 @@
                 "asc" : "▼",
                 "desc" : "▲"
             },
-            /**
-             * 스크롤 페이징 시 한번에 몇개를 가져올것인지 설정
-             */
-            "scrollPaging" : {
-                "size" : 30
-            },
-            "unselect" : false,
-            "resizable" : true,
-            "sortable" : true,
-            "addSelect" : false,
-            "tpBind" : false,
             /**
              * Multilingual messages
              */
@@ -634,6 +640,33 @@
                     "next" : "Next"
                 }
             },
+            /**
+             * Global resizable option.
+             *  - If set to true, the width of the column can be resized.
+             */
+            "resizable" : true,
+            /**
+             * Global sortable option.
+             *  - If set to true, data can be sorted based on the selected column.
+             */
+            "sortable" : true,
+            /**
+             * Global filter option.
+             *  - If set to true, data can be filtered based on the selected column.
+             */
+            "filter" : true,
+            /**
+             * Global scrollPaging.size option.
+             *  - Specifies the number of rows to bind at a time when scroll paging.
+             */
+            "scrollPaging" : {
+                "size" : 30
+            },
+            /**
+             * Global unselect option.
+             *  - If set to false, when the select option is true, selecting the selected row again does not cancel the selection.
+             */
+            "unselect" : false,
             /**
              * Miscellaneous settings
              */
@@ -667,7 +700,7 @@
                  *  - The top position of the fixed header cell(th) may not match when the fixedcol option is activated.
                  *    At this time, it is an option to correct by increasing or decreasing the value by 0.1.
                  */
-                "fixedcolHeadMarginTop" : N.browser.is("ie") || N.browser.is("firefox") ? 1 : 2,
+                "fixedcolHeadMarginTop" : N.browser.is("ie") || N.browser.is("firefox") ? 0 : 1,
                 /**
                  * Global misc.fixedcolHeadMarginLeft option
                  *  - The left position of the fixed header cell(th) may not match when the fixedcol option is activated.
@@ -679,7 +712,7 @@
                  *  - The height of the fixed header cell(th) may not match when the fixedcol option is activated.
                  *    At this time, it is an option to correct by increasing or decreasing the value by 0.1..
                  */
-                "fixedcolHeadHeight" : N.browser.is("ie") || N.browser.is("firefox") ? 0 : -1,
+                "fixedcolHeadHeight" : N.browser.is("ie") || N.browser.is("firefox") ? 1 : 0,
                 /**
                  * Global misc.fixedcolBodyMarginTop option
                  *  - The top position of the fixed body cell(td) may not match when the fixedcol option is activated.
@@ -743,27 +776,53 @@
              *  - If set to true, The menu list dialog is always displayed at the top.
              */
             "alwaysOnTop" : true,
+            /**
+             * Global maxStateful option
+             *  - If the multi option is true, the maximum number of stateful tab contents can be set to prevent the web browser from slowing down whenever additional tab contents are opened.
+             */
             "maxStateful" : 20,
+            /**
+             * Global maxTabs option
+             *  - If the multi option is true, the maximum number of tab contents can be set to prevent the web browser from slowing down whenever additional tab contents are opened.
+             */
             "maxTabs" : 0,
+            /**
+             * Global entireLoadIndicator option
+             *  - If set to true, the progress bar is displayed until all Ajax requests executed when the page is loaded are completed.
+             */
             "entireLoadIndicator" : true,
+            /**
+             * Global entireLoadScreenBlock option
+             *  - If set to true, double submission is prevented by blocking the screen until all Ajax requests executed when the page is loaded are completed.
+             */
             "entireLoadScreenBlock" : true,
+            /**
+             * Global addLast option
+             *  - If set to true, a new tab is added last when the add method is called.
+             */
             "addLast" : true,
+            /**
+             * Global tabScroll option
+             *  - If set to true, tabs can be scrolled by dragging the mouse or touching.
+             */
             "tabScroll" : true,
+            /**
+             * Global closeAllRedirectURL option
+             *  - When the "Close All" button is clicked, if the value of the closeAllRedirectURL option is null, all other tabs except the active tab are closed and if you input the url string, it  will be redirect to the url.
+             */
             "closeAllRedirectURL" : "./",
+            /**
+             * Global entireLoadExcludeURLs option
+             *  - Excludes URLs specified by entireLoadExcludeURLs from the entireLoad(entireLoadIndicator, entireLoadScreenBlock, etc.) related event or option.
+             */
             "entireLoadExcludeURLs" : ["contents.html", "footer.html"],
-            /*
-            "onBeforeLoad" : function(docId, target) {
-            },
-            "onLoad" : function(docId) {
-            },
-            "onBeforeEntireLoad" : function(docId) {
-            },
-            "onEntireLoad" : function(docId) {
-            },
-            */
+            /**
+             * Global onBeforeActive event
+             *  - This event is executed before the selected tab is activated.
+             */
             "onBeforeActive" : function(docId, isFromDocsTabList, isNotLoaded) {
                 if(!isNotLoaded) {
-                    // FIXME 메뉴 DB 만들어 지고 페이지 불러오는 서비스 만들어지면 아래 코드(var hashVal 이전) 제거 바람.
+                    // FIXME When the menu DB is created and the page loading service is created, remove the code below (before var hashVal).
                     var url = N(".index-lefter.view_context__ a[data-pageid='" + docId + "']").attr("href");
                     if (N.string.trim(location.hash).length === 0 || docId === "home0100") {
                         docId = "home0100";
@@ -776,6 +835,10 @@
                     }
                 }
             },
+            /**
+             * Global onActive event
+             *  - This event is executed after the selected tab is activated.
+             */
             "onActive" : function(docId, isFromDocsTabList, isNotLoaded) {
                 if(location.hostname === "bbalganjjm.github.io") {
                     try {
@@ -789,20 +852,6 @@
                     } catch (e) {}
                 }
             },
-            /*
-            "onBeforeInactive" : function(docId) {
-            },
-            "onInactive" : function(docId) {
-            },
-            "onBeforeRemoveState" : function(docId) {
-            },
-            "onRemoveState" : function(docId) {
-            },
-            "onBeforeRemove" : function(docId) {
-            },
-            "onRemove" : function(docId) {
-            },
-            */
             /**
              * Multilingual messages
              */
@@ -889,12 +938,12 @@
         }
     });
 
-    // Natural-JS API 메뉴얼 용 advisors
-    N.context.attr("architecture").cont.advisors.push({ // 소스보기 버튼 처리
+    // Advisors for Natural-JS API manuals.
+    N.context.attr("architecture").cont.advisors.push({ // Source view button handling
         "pointcut" : ".view-code:^init$",
         "adviceType" : "before",
-        "fn" : function(cont, fnChain, args){ /* cont 컨트롤러, fnChain 함수명, args 인자 */
-        	var view = args[0];
+        "fn" : function(cont, fnChain, args){
+            var view = args[0];
             var url = cont.request.get("url");
 
             var btnEle = N('<br><a class="click">View Source Code</a>');
