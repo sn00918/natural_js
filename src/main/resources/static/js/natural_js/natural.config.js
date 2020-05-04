@@ -98,10 +98,10 @@
                         var opts = request.options;
                         if((opts.target && N.isElement(opts.target)) || opts.dataType === "html" || opts.contentType === "text/css") {
                             if(location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-                                // [ Natural-CODE ] 코드 인스펙션
+                                // [ Natural-CODE ] Code inspection
                                 N.code.inspection.report.console(N.code.inspection.test(data), opts.url);
 
-                             // [ Natural-CODE ] Controller object 의 디버깅을 위해 HTML 요청 마다 sourceURL 을 자동으로 삽입.
+                             // [ Natural-CODE ] For debugging controller object, sourceURL is automatically inserted for every HTML request.
                                 data = N.code.addSourceURL(data, opts.url);
                             }
 
