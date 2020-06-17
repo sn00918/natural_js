@@ -873,3 +873,23 @@ pre.shell>code {
     background-color: #C8E6C9;
     border: none !important;
 }
+
+/* Webkit scrollbars */
+.antiscroll-inner::-webkit-scrollbar,
+.tbody_wrap__::-webkit-scrollbar,
+.context_wrap__::-webkit-scrollbar {
+    width: 6px;
+    background-color: #E8F5E9;
+}
+
+.antiscroll-inner:hover::-webkit-scrollbar-track,
+.tbody_wrap__:hover::-webkit-scrollbar-track,
+.context_wrap__:hover::-webkit-scrollbar-track {
+    background-color: #E8F5E9;
+}
+
+.antiscroll-inner:hover::-webkit-scrollbar-thumb,
+.tbody_wrap__:hover::-webkit-scrollbar-thumb,
+.context_wrap__:hover::-webkit-scrollbar-thumb {
+    background-color: #A5D6A7;
+}
