@@ -125,7 +125,7 @@
                     error : function(request, xhr, textStatus, errorThrown) {
                         if((xhr.getResponseHeader("Content-Type") && xhr.getResponseHeader("Content-Type").indexOf("html") > -1) || request.options.dataType === "html") {
                             if(request.options.target != null && request.options.target.html !== undefined) {
-                                request.options.target.html('<div style="text-align: center; margin-top: 140px;margin-bottom: 140px;">[ ' + request.options.url + ' ] 페이지를 불러오는 도중 에러가 발생 했습니다.</div>');
+                                request.options.target.html('<div style="text-align: center; margin-top: 140px;margin-bottom: 140px;">[ ' + request.options.url + ' ] 페이지를 불러오는 도중 에러가 발생했습니다.</div>');
                             } else {
                                 N(window).alert('An error occurred while loading the "' + request.options.url + '" page.').show();
                             }
@@ -923,7 +923,7 @@
              */
             "message" : {
                 "ko_KR" : {
-                    "NoContextSpecifiedInSelector" : 'Controller object의 함수 안에서 요소를 선택할 때는 반드시 $() 나 N() 함수의 두 번째 인자(context)에 view 요소를 입력하거나 view 요소에서 find 해야 합니다.'
+                    "NoContextSpecifiedInSelector" : 'Controller object의 함수 안에서 요소를 선택할 때는 반드시 $() 나 N() 함수의 두 번째 인자(context)에 view 요소를 입력하거나 view 요소에서 find해야 합니다.'
                         + 'view(context) 요소를 입력하지 않으면 다른 View의 요소까지 선택되어 의도하지 않은 오류가 발생할 수 있습니다.'
                         + '\nex) N("selector", cont.view).hide();'
                         + '\n    cont.view.find("selector").hide();',
